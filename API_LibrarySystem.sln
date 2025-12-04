@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35506.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Entities", "Library.Entities\Library.Entities.csproj", "{843774BF-EC13-48A7-8D81-91C8E2B7586F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Domain", "Library.Entities\Library.Domain.csproj", "{843774BF-EC13-48A7-8D81-91C8E2B7586F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entities", "Entities", "{FB32CE9D-BE81-4000-A15E-C7DCBFA6644D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{FB32CE9D-BE81-4000-A15E-C7DCBFA6644D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{D9D67767-4932-4E8D-9871-4B6BBF57B2E2}"
 EndProject
@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Infrastructure", "Library.Infrastructure\Library.Infrastructure.csproj", "{579DA2BD-EDC7-4D70-B58D-DD9DA792F55E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{4621C805-433F-4DFD-A716-BCF10E9A2433}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{4621C805-433F-4DFD-A716-BCF10E9A2433}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Api", "Library.Api\Library.Api.csproj", "{4C764D92-0574-4DE3-9DE4-2684E5D9ACA0}"
 EndProject
@@ -50,5 +50,8 @@ Global
 		{3B8CBA88-8933-4EFE-A96B-B86D6EE2CA94} = {D9D67767-4932-4E8D-9871-4B6BBF57B2E2}
 		{579DA2BD-EDC7-4D70-B58D-DD9DA792F55E} = {2158E1AE-DBF2-49C5-BD26-C080313E118B}
 		{4C764D92-0574-4DE3-9DE4-2684E5D9ACA0} = {4621C805-433F-4DFD-A716-BCF10E9A2433}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {752DC620-149B-44B2-AA4E-6A1B431DC85C}
 	EndGlobalSection
 EndGlobal

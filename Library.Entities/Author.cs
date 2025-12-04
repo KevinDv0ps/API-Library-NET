@@ -17,6 +17,7 @@ namespace Library.Entities
         public DateTime birth_date { get; set; }
         public DateTime? death_date { get; set; }
 
-
+        // Relation
+        public List<Book> Books { get; set; }
     }
 }
