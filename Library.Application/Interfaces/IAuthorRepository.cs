@@ -12,7 +12,8 @@ namespace Library.Application.Interfaces
     {
 
 
-        public Task<IActionResult> GetAuthorsAsync();
+        public Task<ActionResult<IEnumerable<Author>>> GetAuthorsAsync();
+        public Task<ActionResult<IEnumerable<Author>>> PostAuthorAsync(Author author);
 
     }
 }

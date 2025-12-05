@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Library.Entities;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,10 @@ namespace Library.Application.Interfaces
 {
     public interface IUserRepository
     {
+        public Task<ActionResult<IEnumerable<User>>> GetUsersAsync();
+        public Task<ActionResult<User>> GetUsersAsyncById(int id_user);
+        public Task<ActionResult<User>> PostUserAsync(User user);
+        public Task<ActionResult<User>> UpdateUserAsync(int id_user);
+
     }
 }
