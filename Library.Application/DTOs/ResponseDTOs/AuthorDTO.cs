@@ -4,21 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Entities
+namespace Library.Application.DTOs.ResponseDTOs
 {
-    public class User
+    public class AuthorDTO
     {
-        public int id { get; set; }
+        public int id_author { get; set; }
         public string first_name { get; set; }
         public string? second_name { get; set; }
         public string first_lastname { get; set; }
         public string? second_lastname { get; set; }
-        public string email { get; set; }
-        public string phone_number { get; set; }
-        public DateTime register_date { get; set; }
-
-        // 1 Usuario -> Muchos Préstamos
-        public List<Loan> loans { get; set; }
-
+        public string nacionality { get; set; }
+        public DateTime birth_date { get; set; }
+        public DateTime? death_date { get; set; }
     }
 }

@@ -10,10 +10,11 @@ namespace Library.Application.Interfaces
 {
     public interface IUserRepository
     {
-        public Task<ActionResult<IEnumerable<User>>> GetUsersAsync();
-        public Task<ActionResult<User>> GetUsersAsyncById(int id_user);
-        public Task<ActionResult<User>> PostUserAsync(User user);
-        public Task<ActionResult<User>> UpdateUserAsync(int id_user);
-
+        Task<IEnumerable<User>> GetAllAsync();
+        Task<User?> GetByIdAsync(int id_user);
+        Task CreateAsync(User user);
+        Task UpdateAsync(User user);
+        // Busca un usuario por su nombre de usuario o email para validar login.
+        Task<User?> GetByEmailAsync(string mail);
     }
 }

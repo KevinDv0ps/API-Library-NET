@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Application.DTOs
+namespace Library.Application.DTOs.CreateDTOs
 {
-    public class BookDTO
+    public class GenreCreateDTO
     {
+        public string genre_name { get; set; }
     }
 }

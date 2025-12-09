@@ -1,11 +1,22 @@
+using Library.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
+// Add services to the container
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Contexto bd
+var connectionString =
+    builder.Configuration.GetConnectionString("DefaultConnection")
+        ?? throw new InvalidOperationException("Connection string"
+        + "'DefaultConnection' not found.");
+
+builder.Services.AddDbContext<DataContextLibrary>(options =>
+    options.UseSqlServer(connectionString));
 
 var app = builder.Build();
 

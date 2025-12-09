@@ -4,20 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Entities
+namespace Library.Application.DTOs.ResponseDTOs
 {
-    public class Loan
+    public class LoanDTO
     {
-        public int id { get; set; }
-        public int id_book { get; set; } // FK
-        public int id_user { get; set; } // FK
+        public int id_loan { get; set; }
+        public int id_book { get; set; } 
+        public int id_user { get; set; } 
         public DateTime loan_date { get; set; }
         public DateTime due_date { get; set; }
         public DateTime? return_date { get; set; }
         public bool is_return { get; set; }
-
-
-        public Book book { get; set; }
-        public User user { get; set; }
     }
 }

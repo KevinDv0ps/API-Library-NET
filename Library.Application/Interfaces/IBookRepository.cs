@@ -10,12 +10,35 @@ namespace Library.Application.Interfaces
 {
     public interface IBookRepository
     {
-        public Task<ActionResult<IEnumerable<Book>>> GetBooksAsync();
-        public Task<ActionResult<Book>> GetBookAsyncById(int id_book);
-        public Task<ActionResult<Book>> GetBookAsyncByGenreIdOrName(int? id_genre, string? name_genre);
-        public Task<ActionResult<Book>> GetBookAsyncByAuthorIdOrName(int? id_author, string? name_author);
-        public Task<ActionResult<Book>> PostBooksAsync();
-        public Task<ActionResult<Book>> UpadteBooksAsync(int id_book);
-        //public Task<ActionResult<Book>> ChangeBookState(int id_book);
+        // Obtener un libro por su ID
+        // Devuelve null si no existe.
+        Task<Book?> GetByIdAsync(int id_book);
+
+        // Obtener todos los libros registrados.
+        Task<IEnumerable<Book>> GetAllAsync();
+
+        // Crear un nuevo libro en la base de datos.
+        Task AddAsync(Book book);
+
+        // Actualizar los datos de un libro (título, género, autor, etc.)
+        Task UpdateAsync(Book book);
+
+        // Eliminar un libro (si quieres manejar borrado lógico, lo harías en Infrastructure)
+        Task DeleteAsync(int id_book);
+
+        // Obtener todos los libros de un autor específico
+        Task<IEnumerable<Book>> GetByAuthorAsync(int id_author);
+
+        // Obtener todos los libros de un género específico
+        Task<IEnumerable<Book>> GetByGenreAsync(int id_genre);
+
+        // Verificar si un libro está disponible para préstamo
+        Task<bool> IsAvailableAsync(int id_book);
+
+        // Cambiar el estado de disponibilidad del libro (true = disponible / false = prestado)
+        Task SetAvailabilityAsync(int id_book, bool isAvailable);
+
+        // Obtener libros por su título (puede devolver múltiples resultados)
+        Task<IEnumerable<Book>> SearchByNameAsync(string name);
     }
 }

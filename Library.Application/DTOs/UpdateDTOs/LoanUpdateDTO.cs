@@ -4,20 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Entities
+namespace Library.Application.DTOs.UpdateDTOs
 {
-    public class Loan
+    public class LoanUpdateDTO
     {
         public int id { get; set; }
-        public int id_book { get; set; } // FK
-        public int id_user { get; set; } // FK
-        public DateTime loan_date { get; set; }
         public DateTime due_date { get; set; }
         public DateTime? return_date { get; set; }
         public bool is_return { get; set; }
-
-
-        public Book book { get; set; }
-        public User user { get; set; }
     }
 }

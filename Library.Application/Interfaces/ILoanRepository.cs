@@ -10,10 +10,18 @@ namespace Library.Application.Interfaces
 {
     public interface ILoanRepository
     {
-        Task<IEnumerable<Book>> GetAsync();
-        Task<IEnumerable<Loan>> GetAsyncByUrserId(int id_user);
-        Task<Loan> GetAsyncByLoanId (int id_loan);
-        Task<Loan> PosAsync (Loan loan);
-        Task<bool> IsBookAvailable(int id_book);
+        Task<IEnumerable<Loan>> GetAllAsync();
+        Task<IEnumerable<Loan>> GetByUserIdAsync(int id_user);
+        Task<Loan?> GetByLoanIdAsync(int id_loan);
+        Task CreateAsync (Loan loan);
+
+        // Extender fecha de devolución
+        Task ExtendDueDateAsync(int id_loan, DateTime newDueDate);
+
+        // Marcar como devuelto (registrar la devolución)
+        Task MarkAsReturnedAsync(int id_loan);
+
+        // Verificar si un préstamo ya fue devuelto
+        Task<bool> IsReturnedAsync(int id_loan);
     }
 }
