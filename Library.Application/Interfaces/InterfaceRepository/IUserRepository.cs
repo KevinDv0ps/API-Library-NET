@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Application.Interfaces
+namespace Library.Application.Interfaces.InterfaceRepository
 {
     public interface IUserRepository
     {

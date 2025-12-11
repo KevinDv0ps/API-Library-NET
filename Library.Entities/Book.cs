@@ -13,5 +13,10 @@
         public List<Author> Authors { get; set; }
         public List<Genre> Genres { get; set; }
         public Loan? Loan { get; set; }
+
+        public void setAvailable(bool available)
+        {
+            this.is_available = available;
+        }
     }
 }

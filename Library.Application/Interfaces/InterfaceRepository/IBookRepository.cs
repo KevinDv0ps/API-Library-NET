@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Application.Interfaces
+namespace Library.Application.Interfaces.InterfaceRepository
 {
     public interface IBookRepository
     {
@@ -32,13 +32,7 @@ namespace Library.Application.Interfaces
         // Obtener todos los libros de un género específico
         Task<IEnumerable<Book>> GetByGenreAsync(int id_genre);
 
-        // Verificar si un libro está disponible para préstamo
-        Task<bool> IsAvailableAsync(int id_book);
-
-        // Cambiar el estado de disponibilidad del libro (true = disponible / false = prestado)
-        Task SetAvailabilityAsync(int id_book, bool isAvailable);
-
-        // Obtener libros por su título (puede devolver múltiples resultados)
-        Task<IEnumerable<Book>> SearchByNameAsync(string name);
+        // Obtener libros por su título
+        Task<Book?> SearchByNameAsync(string name);
     }
 }

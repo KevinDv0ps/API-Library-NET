@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Application.Interfaces
+namespace Library.Application.Interfaces.InterfaceRepository
 {
     public interface ILoanRepository
     {
@@ -14,14 +14,6 @@ namespace Library.Application.Interfaces
         Task<IEnumerable<Loan>> GetByUserIdAsync(int id_user);
         Task<Loan?> GetByLoanIdAsync(int id_loan);
         Task CreateAsync (Loan loan);
-
-        // Extender fecha de devolución
-        Task ExtendDueDateAsync(int id_loan, DateTime newDueDate);
-
-        // Marcar como devuelto (registrar la devolución)
-        Task MarkAsReturnedAsync(int id_loan);
-
-        // Verificar si un préstamo ya fue devuelto
-        Task<bool> IsReturnedAsync(int id_loan);
+        Task UpdateAsync (Loan loan);
     }
 }

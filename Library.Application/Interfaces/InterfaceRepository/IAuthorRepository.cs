@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace Library.Application.Interfaces
+namespace Library.Application.Interfaces.InterfaceRepository
 {
     public interface IAuthorRepository
     {
@@ -24,8 +24,8 @@ namespace Library.Application.Interfaces
         // Actualizar los datos de un autor (nombre, nacionalidad, etc.)
         Task UpdateAsync(Author author);
 
-        // Obtener autores por su nombre (puede devolver múltiples resultados)
-        Task<IEnumerable<Author>> SearchByTitleAsync(string name);
+        // Obtener autores por su nombre
+        Task<Author?> SearchByNameAsync(string name);
 
 
 
