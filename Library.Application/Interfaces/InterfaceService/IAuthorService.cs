@@ -16,6 +16,6 @@ namespace Library.Application.Interfaces.InterfaceService
         Task<IEnumerable<AuthorDTO>> GetAllAsync();
         Task<AuthorDTO?> GetByIdAsync(int id);
         Task<bool> UpdateAsync(AuthorUpdateDTO authorDTO);
-        Task<AuthorDTO?> SearchByNameAsync(string name);
+        Task<IEnumerable<AuthorDTO?>> SearchByNameAsync(string name);
     }
 }

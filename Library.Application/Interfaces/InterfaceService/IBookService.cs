@@ -20,5 +20,6 @@ namespace Library.Application.Interfaces.InterfaceService
         Task<IEnumerable<BookDTO>> GetByAuthorAsync(int id_author);
         Task<IEnumerable<BookDTO>> GetByGenreAsync(int id_genre);
         Task<BookDTO?> SearchByNameAsync(string name);
+        Task<bool> GetAvailable(BookDTO bookDTO);
     }
 }

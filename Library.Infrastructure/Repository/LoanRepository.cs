@@ -29,7 +29,6 @@ namespace Library.Infrastructure.Repository
                 .Include(l => l.user)
                 .ToListAsync();
         }
-
         public async Task<Loan?> GetByLoanIdAsync(int id_loan)
         {
             return await dataContextLibrary.Loans
@@ -45,7 +44,6 @@ namespace Library.Infrastructure.Repository
                 .Where(c =>c.id_user == id_user)
                 .ToListAsync();
         }
-
         public async Task UpdateAsync(Loan loan)
         {
             dataContextLibrary.Loans.Update(loan);

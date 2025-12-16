@@ -23,6 +23,7 @@ namespace Library.Application.Services
             _authorRepository = authorRepository;
             _genreRepository = genreRepository;
         }
+
         public async Task<bool> AddAsync(BookCreateDTO bookDTO)
         {
             var exist = await _bookRepository.SearchByNameAsync(bookDTO.title);
@@ -58,39 +59,226 @@ namespace Library.Application.Services
             return true;
         }
 
-        public Task<bool> DeleteAsync(int id_book)
+        public async Task<bool> DeleteAsync(int id_book)
         {
+            var book = await _bookRepository.GetByIdAsync(id_book);
+            if (book == null) return false;
+
+            await _bookRepository.DeleteAsync(book);
+            return true;
+        }
+
+        public async Task<IEnumerable<BookDTO>> GetAllAsync()
+        {
+            var books = await _bookRepository.GetAllAsync();
+            return books.Select(g => new BookDTO
+            {
+                title = g.title,
+                description = g.description,
+                published_date = g.published_date,
+                is_available = g.is_available,
+                Authors = g.Authors.Select(a => new AuthorDTO
+                {
+                    id_author = a.id,
+                    first_name = a.first_name,
+                    second_name = a.second_name,
+                    first_lastname = a.first_lastname,
+                    second_lastname = a.second_lastname,
+                    nacionality = a.nacionality,
+                    birth_date = a.birth_date,
+                    death_date = a.death_date,
+                }).ToList(),
+                Genres = g.Genres.Select(ge => new GenreDTO
+                {
+                    id_genre = ge.id,
+                    genre_name = ge.genre_name,
+                }).ToList(),
+                Loan = g.Loan != null ? new LoanDTO
+                {
+                    id_loan = g.Loan.id,
+                    loan_date = g.Loan.loan_date,
+                    return_date = g.Loan.return_date,
+                    id_user = g.Loan.id_user,
+                } : null
+            });
+        }
+
+        public async Task<IEnumerable<BookDTO>> GetByAuthorAsync(int id_author)
+        {
+            var books = await _bookRepository.GetByAuthorAsync(id_author);
             
+            return books.Select(g => new BookDTO
+            {
+                title = g.title,
+                description = g.description,
+                published_date = g.published_date,
+                is_available = g.is_available,
+                Authors = g.Authors.Select(a => new AuthorDTO
+                {
+                    id_author = a.id,
+                    first_name = a.first_name,
+                    second_name = a.second_name,
+                    first_lastname = a.first_lastname,
+                    second_lastname = a.second_lastname,
+                    nacionality = a.nacionality,
+                    birth_date = a.birth_date,
+                    death_date = a.death_date,
+                }).ToList(),
+                Genres = g.Genres.Select(ge => new GenreDTO
+                {
+                    id_genre = ge.id,
+                    genre_name = ge.genre_name,
+                }).ToList(),
+                Loan = g.Loan != null ? new LoanDTO
+                {
+                    id_loan = g.Loan.id,
+                    loan_date = g.Loan.loan_date,
+                    return_date = g.Loan.return_date,
+                    id_user = g.Loan.id_user,
+                } : null
+            });
         }
 
-        public Task<IEnumerable<BookDTO>> GetAllAsync()
+        public async Task<IEnumerable<BookDTO>> GetByGenreAsync(int id_genre)
         {
-            throw new NotImplementedException();
+            var books =await  _bookRepository.GetByGenreAsync(id_genre);
+            return books.Select(g => new BookDTO
+            {
+                title = g.title,
+                description = g.description,
+                published_date = g.published_date,
+                is_available = g.is_available,
+                Authors = g.Authors.Select(a => new AuthorDTO
+                {
+                    id_author = a.id,
+                    first_name = a.first_name,
+                    second_name = a.second_name,
+                    first_lastname = a.first_lastname,
+                    second_lastname = a.second_lastname,
+                    nacionality = a.nacionality,
+                    birth_date = a.birth_date,
+                    death_date = a.death_date,
+                }).ToList(),
+                Genres = g.Genres.Select(ge => new GenreDTO
+                {
+                    id_genre = ge.id,
+                    genre_name = ge.genre_name,
+                }).ToList(),
+                Loan = g.Loan != null ? new LoanDTO
+                {
+                    id_loan = g.Loan.id,
+                    loan_date = g.Loan.loan_date,
+                    return_date = g.Loan.return_date,
+                    id_user = g.Loan.id_user,
+                } : null
+            });
         }
 
-        public Task<IEnumerable<BookDTO>> GetByAuthorAsync(int id_author)
+        public async Task<BookDTO?> GetByIdAsync(int id_book)
         {
-            throw new NotImplementedException();
+            var book = await _bookRepository.GetByIdAsync(id_book);
+            if (book == null) return null;
+            return new BookDTO
+            {
+                title = book.title,
+                description = book.description,
+                published_date = book.published_date,
+                is_available = book.is_available,
+                Authors = book.Authors.Select(a => new AuthorDTO
+                {
+                    id_author = a.id,
+                    first_name = a.first_name,
+                    second_name = a.second_name,
+                    first_lastname = a.first_lastname,
+                    second_lastname = a.second_lastname,
+                    nacionality = a.nacionality,
+                    birth_date = a.birth_date,
+                    death_date = a.death_date,
+                }).ToList(),
+                Genres = book.Genres.Select(ge => new GenreDTO
+                {
+                    id_genre = ge.id,
+                    genre_name = ge.genre_name,
+                }).ToList(),
+                Loan = book.Loan != null ? new LoanDTO
+                {
+                    id_loan = book.Loan.id,
+                    loan_date = book.Loan.loan_date,
+                    return_date = book.Loan.return_date,
+                    id_user = book.Loan.id_user,
+                } : null
+            };
         }
 
-        public Task<IEnumerable<BookDTO>> GetByGenreAsync(int id_genre)
+        public async Task<BookDTO?> SearchByNameAsync(string name)
         {
-            throw new NotImplementedException();
+            var book = await _bookRepository.SearchByNameAsync(name);
+            if (book == null) return null;
+            return new BookDTO
+            {
+                title = book.title,
+                description = book.description,
+                published_date = book.published_date,
+                is_available = book.is_available,
+                Authors = book.Authors.Select(a => new AuthorDTO
+                {
+                    id_author = a.id,
+                    first_name = a.first_name,
+                    second_name = a.second_name,
+                    first_lastname = a.first_lastname,
+                    second_lastname = a.second_lastname,
+                    nacionality = a.nacionality,
+                    birth_date = a.birth_date,
+                    death_date = a.death_date,
+                }).ToList(),
+                Genres = book.Genres.Select(ge => new GenreDTO
+                {
+                    id_genre = ge.id,
+                    genre_name = ge.genre_name,
+                }).ToList(),
+                Loan = book.Loan != null ? new LoanDTO
+                {
+                    id_loan = book.Loan.id,
+                    loan_date = book.Loan.loan_date,
+                    return_date = book.Loan.return_date,
+                    id_user = book.Loan.id_user,
+                } : null
+            };
         }
 
-        public Task<BookDTO?> GetByIdAsync(int id_book)
+        public async Task<bool> UpdateAsync(BookUpdateDTO bookDTO)
         {
-            throw new NotImplementedException();
+            var book = await _bookRepository.GetByIdAsync(bookDTO.id);
+            if (book == null) return false;
+
+            book.title = bookDTO.title;
+            book.description = bookDTO.description;
+            book.published_date = bookDTO.published_date;
+            book.is_available = bookDTO.is_available;
+            book.Authors.Clear();
+            foreach (var d in bookDTO.authors_ids.Distinct())
+            {
+                Author? author = await _authorRepository.GetAsyncById(d);
+                if (author == null) throw new Exception("Author not found id: " + d);
+                book.Authors.Add(author);
+            }
+            book.Genres.Clear();
+            foreach (var id in bookDTO.genres_ids.Distinct())
+            {
+                Genre? genre = await _genreRepository.GetByidAsync(id);
+                if (genre == null) throw new Exception("Genre not found id: " + id);
+                book.Genres.Add(genre);
+            }
+
+            await _bookRepository.UpdateAsync(book);
+            return true;
         }
 
-        public Task<BookDTO?> SearchByNameAsync(string name)
+        public async Task<bool> GetAvailable(BookDTO bookDTO)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> UpdateAsync(BookUpdateDTO book)
-        {
-            throw new NotImplementedException();
+            var book = await _bookRepository.GetByIdAsync(bookDTO.id_book);
+            if (book == null) throw new Exception("Book does not exist");
+            return book.is_available;
         }
     }
 }

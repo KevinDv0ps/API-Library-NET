@@ -18,7 +18,7 @@ namespace Library.Entities
         public DateTime register_date { get; set; }
 
         // 1 Usuario -> Muchos Préstamos
-        public List<Loan> loans { get; set; }
+        public List<Loan> loans { get; set; } = new();
 
     }
 }

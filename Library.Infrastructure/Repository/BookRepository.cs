@@ -24,10 +24,8 @@ namespace Library.Infrastructure.Repository
             await dataContextLibrary.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id_book)
+        public async Task DeleteAsync(Book book)
         {
-            var book = await dataContextLibrary.Books.FindAsync(id_book);
-            if (book == null) return;
             dataContextLibrary.Remove(book);
             await dataContextLibrary.SaveChangesAsync();
         }

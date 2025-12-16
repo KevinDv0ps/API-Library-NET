@@ -24,7 +24,7 @@ namespace Library.Application.Interfaces.InterfaceRepository
         Task UpdateAsync(Book book);
 
         // Eliminar un libro (si quieres manejar borrado lógico, lo harías en Infrastructure)
-        Task DeleteAsync(int id_book);
+        Task DeleteAsync(Book id_book);
 
         // Obtener todos los libros de un autor específico
         Task<IEnumerable<Book>> GetByAuthorAsync(int id_author);

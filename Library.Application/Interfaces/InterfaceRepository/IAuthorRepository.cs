@@ -25,7 +25,7 @@ namespace Library.Application.Interfaces.InterfaceRepository
         Task UpdateAsync(Author author);
 
         // Obtener autores por su nombre
-        Task<Author?> SearchByNameAsync(string name);
+        Task<IEnumerable<Author?>> SearchByNameAsync(string[] name):
 
 
 

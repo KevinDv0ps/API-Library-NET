@@ -65,9 +65,24 @@ namespace Library.Application.Services
             };
         }
 
-        public Task<AuthorDTO?> SearchByNameAsync(string name)
+        public async Task<IEnumerable<AuthorDTO?>> SearchByNameAsync(string name)
         {
-            throw new NotImplementedException();
+            var parts = name
+                .ToLower()
+                .Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            var result = await _authorRepository.SearchByNameAsync(parts);
+            return result.Select(a => a == null ? null : new AuthorDTO
+            {
+                id_author = a.id,
+                first_name = a.first_name,
+                second_name = a.second_name,
+                first_lastname = a.first_lastname,
+                second_lastname = a.second_lastname,
+                nacionality = a.nacionality,
+                birth_date = a.birth_date,
+                death_date = a.death_date,
+            });
         }
 
         public async Task<bool> UpdateAsync(AuthorUpdateDTO authorDTO)
