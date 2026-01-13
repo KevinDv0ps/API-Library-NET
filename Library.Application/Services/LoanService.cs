@@ -135,7 +135,7 @@ namespace Library.Application.Services
 
                     return fineAmount;
                 }
-                return 0;
+                return 1;
             }
             return 0;
         }
